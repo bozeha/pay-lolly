@@ -1,12 +1,12 @@
-import { StyledButton, MainCont, ButtonsDIv, StyledImage } from './index-styles'
+import { MainCont, ButtonsDIv, StyledImage } from './index-styles'
 import MainTable from './components/Table'
-import { useState, img, useRef } from 'react'
+import { useState, useRef } from 'react'
 import loaderSrc from './images/loader.gif'
 import Popup from './components/Popup'
 
 import SortAndFilter from './components/SortAndFilter'
 import axios from 'axios'
-import { E_TASKS_STATUS, E_TASKS_STATUS_STR, E_POPUP_BUTTON_STATUS, E_SORT_TABLE_BY } from './enums/tableEnums'
+import { E_TASKS_STATUS, E_POPUP_BUTTON_STATUS, E_SORT_TABLE_BY } from './enums/tableEnums'
 import { useEffect } from 'react'
 function App() {
   const url = "http://127.0.0.5:3002";
@@ -44,7 +44,7 @@ function App() {
     }
   }, [sortBy])
   useEffect(() => {
-    if (tableData != null) updateTasksStatus()
+    if (tableData !== null) updateTasksStatus()
   }, [tableData])
   const updateTasksStatus = () => {
     let complited = 0;
@@ -76,7 +76,7 @@ function App() {
   }
   const filterDataByDate = (sortedData) => {
     if (sortedData) {
-      const filterdDataByDate = sortedData.filter((current) => filterTimestampToDate(current.date) == filterByDate)
+      const filterdDataByDate = sortedData.filter((current) => filterTimestampToDate(current.date) === filterByDate)
       return filterdDataByDate
     }
   }
@@ -84,10 +84,10 @@ function App() {
     try {
       const res = await axios.post(`${url}/data`)
       let sortedData = sortData(res.data)
-      if (filter != "") {
+      if (filter !== "") {
         sortedData = filterData(sortedData)
       }
-      if (filterByDate != "") {
+      if (filterByDate !== "") {
         sortedData = filterDataByDate(sortedData)
       }
       setTableData(sortedData)
@@ -149,6 +149,9 @@ function App() {
         return sortedData = data.sort((a, b) => {
           return a.status === b.status ? 0 : a.status > b.status ? 1 : -1
         })
+      default:
+        return data;
+
 
 
     }

@@ -1,14 +1,13 @@
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import axios from 'axios'
 import { StyledTable, TableContaner } from './tableStyles'
-import { E_TASKS_STATUS, E_TASKS_STATUS_STR, E_POPUP_BUTTON_STATUS, E_SORT_TABLE_BY } from '../enums/tableEnums'
+import { E_TASKS_STATUS_STR, E_POPUP_BUTTON_STATUS, E_SORT_TABLE_BY } from '../enums/tableEnums'
 import { v4 as uuid } from 'uuid'
 
 const MainTable = ({ props }) => {
 
 
-    //const url = "https://d8584101-c461-47b0-a7d8-62c510f14ba9.mock.pstmn.io";
     const url = "http://127.0.0.5:3002";
 
     const removeTask = async (id) => {
